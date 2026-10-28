@@ -1,0 +1,15 @@
+{
+  "name": "krowli",
+  "description": "Claude Code plugins by Krowli.",
+  "owner": {
+    "name": "Krowli",
+    "url": "https://github.com/Krowli"
+  },
+  "plugins": [
+    {
+      "name": "creative-landing",
+      "source": "./",
+      "description": "Animated, award-level landing pages built by a lead agent with builder subagents and a headless QA loop."
+    }
+  ]
+}

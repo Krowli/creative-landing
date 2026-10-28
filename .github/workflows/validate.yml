@@ -1,0 +1,29 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Plugin and skill manifests
+        run: npx -y @anthropic-ai/claude-code plugin validate . --strict
+      - name: Scripts parse
+        run: for f in skills/creative-landing/scripts/*.mjs skills/creative-landing/assets/*.mjs; do node --check "$f"; done
+      - name: Links in the skill point to real files
+        run: |
+          cd skills/creative-landing
+          missing=0
+          for ref in $(grep -oh 'references/[a-z-]*\.md\|assets/[a-z-]*\.mjs\|scripts/[a-z]*\.mjs' SKILL.md references/*.md | sort -u); do
+            [ -f "$ref" ] || { echo "missing: $ref"; missing=1; }
+          done
+          for ref in $(grep -oh '`[a-z-]*\.md`' references/*.md | tr -d '`' | sort -u | grep -v -x 'DIRECTION.md\|SKILL.md'); do
+            [ -f "references/$ref" ] || { echo "missing: references/$ref"; missing=1; }
+          done
+          exit $missing

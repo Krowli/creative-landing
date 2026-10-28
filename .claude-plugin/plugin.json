@@ -1,0 +1,10 @@
+{
+  "name": "creative-landing",
+  "version": "1.0.0",
+  "description": "Builds animated, award-level landing pages: a plain-words client interview, art direction, parallel builder subagents and a headless QA loop with fps numbers.",
+  "author": { "name": "Krowli", "url": "https://github.com/Krowli" },
+  "homepage": "https://github.com/Krowli/creative-landing",
+  "repository": "https://github.com/Krowli/creative-landing",
+  "license": "MIT",
+  "keywords": ["landing-page", "web-design", "animation", "gsap", "threejs", "webgl", "subagents", "qa"]
+}
